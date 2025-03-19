@@ -34,8 +34,8 @@ const MovieList = () => {
 
         </div>
                 <div className="flex flex-wrap ">
-                    {movies.map(movie => (
-                        <MovieCard name={movie.name} imageURl={movie.imageUrl} />
+                    {movies.map((movie,index) => (
+                        <MovieCard key={index} name={movie.name} imageURl={movie.imageUrl} />
                     ))}
                 </div>
         </div>
