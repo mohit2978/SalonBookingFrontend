@@ -1,20 +1,27 @@
 import React from 'react';
 
 function Login() {
-    const [name, setName] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [gender, setGender] = React.useState('');
+   const [formData, setFormData] = React.useState({
+       email: '',
+       name:'',
+       gender:'',
+   })
 
-    const handleChnage=(e) => {
-        console.log('Chnage',e.target.value);
-        setName(e.target.value);
+    const handleChange=(e) => {
+       const { name, value } = e.target;
+       setFormData({...formData,[name]:value});
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();//else form will reload
-        const form = {name,email,message,gender};
+        const form = formData;
         console.log(form);
+
+
     }
+
+
+
 
     //Separate handler for each field!!or ue call back as used in email
 
@@ -32,7 +39,8 @@ function Login() {
                         name="name"
                         required
                         className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                        onChange={handleChnage}
+                        onChange={handleChange}
+                        value={formData.name}
                     />
                 </div>
 
@@ -45,7 +53,8 @@ function Login() {
                         name="email"
                         required
                         className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                        onChange={e=>setEmail(e.target.value)}
+                        onChange={handleChange}
+                        value={formData.email}
                     />
                 </div>
 
@@ -60,11 +69,7 @@ function Login() {
                                 name="gender"
                                 value="male"
                                 className="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
-                                onChange={e=>{
-                                    console.log("male")
-                                    console.log(e.target.checked);
-                                    setGender(e.target.value);
-                                }}
+                                onChange={handleChange}
                             />
                             <label htmlFor="male" className="ml-2 text-sm text-gray-700">Male</label>
                         </div>
@@ -75,11 +80,7 @@ function Login() {
                                 name="gender"
                                 value="female"
                                 className="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
-                                onChange={e=>{
-                                    console.log("female")
-                                    console.log(e.target.checked);
-                                    setGender(e.target.value);
-                                }}
+                                onChange={handleChange}
                             />
                             <label htmlFor="female" className="ml-2 text-sm text-gray-700">Female</label>
                         </div>
