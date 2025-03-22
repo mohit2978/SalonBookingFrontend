@@ -73,6 +73,7 @@ function Login() {
                             />
                             <label htmlFor="male" className="ml-2 text-sm text-gray-700">Male</label>
                         </div>
+
                         <div>
                             <input
                                 type="radio"
