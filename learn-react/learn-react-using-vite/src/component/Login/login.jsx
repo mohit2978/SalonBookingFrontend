@@ -1,24 +1,36 @@
 import React from 'react';
+import {useFormik} from "formik";
 
 function Login() {
-   const [formData, setFormData] = React.useState({
-       email: '',
-       name:'',
-       gender:'',
-   })
+   // const [formData, setFormData] = React.useState({
+   //     email: '',
+   //     name:'',
+   //     gender:'',
+   // })
+   //
+   //  const handleChange=(e) => {
+   //     const { name, value } = e.target;
+   //     setFormData({...formData,[name]:value});
+   //  }
+   //
+   //  const handleSubmit = (e) => {
+   //      e.preventDefault();//else form will reload
+   //      const form = formData;
+   //      console.log(form);
+   //
+   //
+   //  }
 
-    const handleChange=(e) => {
-       const { name, value } = e.target;
-       setFormData({...formData,[name]:value});
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();//else form will reload
-        const form = formData;
-        console.log(form);
-
-
-    }
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            name:'',
+            gender:''
+        },
+        onSubmit: values => {
+            alert(JSON.stringify(values, null, 2));
+        },
+    });
 
 
 
@@ -29,7 +41,7 @@ function Login() {
         <div className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
             <h2 className="text-2xl font-semibold text-center mb-4">Sample Form</h2>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={formik.handleSubmit}>
                 {/* Name Field */}
                 <div className="mb-4">
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name:</label>
@@ -39,8 +51,8 @@ function Login() {
                         name="name"
                         required
                         className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                        onChange={handleChange}
-                        value={formData.name}
+                        onChange={formik.handleChange}
+                        value={formik.values.name}
                     />
                 </div>
 
@@ -53,8 +65,8 @@ function Login() {
                         name="email"
                         required
                         className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                        onChange={handleChange}
-                        value={formData.email}
+                        onChange={formik.handleChange}
+                        value={formik.values.email}
                     />
                 </div>
 
@@ -69,7 +81,7 @@ function Login() {
                                 name="gender"
                                 value="male"
                                 className="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
-                                onChange={handleChange}
+                                onChange={formik.handleChange}
                             />
                             <label htmlFor="male" className="ml-2 text-sm text-gray-700">Male</label>
                         </div>
@@ -81,7 +93,7 @@ function Login() {
                                 name="gender"
                                 value="female"
                                 className="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
-                                onChange={handleChange}
+                                onChange={formik.handleChange}
                             />
                             <label htmlFor="female" className="ml-2 text-sm text-gray-700">Female</label>
                         </div>
