@@ -1,5 +1,6 @@
 import React from 'react';
 import MovieCard from "./MovieCard.jsx";
+import {useSelector} from "react-redux";
 
 const MovieList = () => {
     const movies = [
@@ -24,14 +25,16 @@ const MovieList = () => {
             imageUrl: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQaKPMJfQpfF5yYfdwnhzi87weKItq6ySZ2gBBuUAteOGHadaaK"
         }
     ];
+    const tcount = useSelector((state) => state.tcount);
 
     return (
+
         <div>
         <div>
             <h1 className="text-9xl text-fuchsia-600 bg-amber-300 font-light underline ">
                 Neelam Cinema
             </h1>
-
+            <h5>total ticket count is {tcount}</h5>
         </div>
                 <div className="flex flex-wrap ">
                     {movies.map((movie,index) => (
